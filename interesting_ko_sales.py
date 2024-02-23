@@ -20,4 +20,6 @@ for ko in kos:
     for volume in sales:
         print(f'{volume} pieces:')
         for singleSale in sales[volume]:
-            print(f'\t{singleSale["timestamp"].time()}  at  {singleSale["price"]:.2f} €')
+            # to print the time without the date, you can use time = singleSale["timestamp"].time()
+            time = singleSale["timestamp"].strftime('%d.%m. %H:%M:%S')
+            print(f'\t{time}  at  {singleSale["price"]:.2f} €')

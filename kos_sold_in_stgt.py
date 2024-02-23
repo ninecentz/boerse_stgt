@@ -42,13 +42,13 @@ class BoerseStgt(Chrome):
         # Extract table entries and store them in a dict
         certDict = {}
         for row in rows:
-            certPrice = row.find_element(By.XPATH, 'td[3]').get_attribute('innerText')
+            certPrice = row.find_element(By.XPATH, 'td[4]').get_attribute('innerText')
             certPrice = re.search(r'^\d+(,\d+)?', certPrice).group()
             certPrice = float(certPrice.replace(',','.'))
             if not(MIN_PRICE <= certPrice <= MAX_PRICE): continue
             certID = row.find_element(By.CLASS_NAME, 'bsg-link__label').get_attribute('innerText')
             # get name of certificate
-            certDict[certID] = row.find_element(By.XPATH, 'td[2]').get_attribute('innerText')
+            certDict[certID] = row.find_element(By.XPATH, 'td[3]').get_attribute('innerText')
         return certDict
         
     def inspectKo(self, id: str, date: datetime.date, startTime: datetime.time, endTime: datetime.time):
